@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YSM Report</title>
+  <style>
+    :root {
+      --bg-color: #f3f2ee;
+      --text-color: #1f0909;
+      --muted-color: #656565;
+      --line-color: #c5c5c5;
+      --panel-color: #e8e7e7;
+      --code-color: #dadada;
+      --link-color: #065588;
+      --select-text-bg-color: rgba(32, 43, 51, 0.63);
+      --select-text-font-color: white;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: inherit;
+      color: inherit;
+      font-family: "PT Serif", "Times New Roman", "SF Pro", Times, serif;
+      line-height: 1.5em;
+    }
+
+    ::selection {
+      background: var(--select-text-bg-color);
+      color: var(--select-text-font-color);
+      text-shadow: none;
+    }
+
+    main {
+      width: min(40em, calc(100% - 2rem));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 36px 0 48px;
+    }
+
+    @media only screen and (min-width: 1400px) {
+      main {
+        max-width: 914px;
+      }
+    }
+
+    h1,
+    h2 {
+      font-weight: normal;
+    }
+
+    h1 {
+      margin: 2em 0 0.5em;
+      padding-bottom: 0.8125em;
+      border-bottom: 1px solid var(--line-color);
+      font-size: 1.875em;
+      line-height: 1.3em;
+    }
+
+    h2 {
+      margin: 2.285714em 0 0.75em;
+      font-size: 1.3125em;
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 0 0 1.5em;
+    }
+
+    .lead {
+      color: var(--muted-color);
+      font-style: italic;
+    }
+
+    .reports {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5em 0 0;
+    }
+
+    .report-link {
+      display: block;
+      padding: 1rem 1.125rem;
+      border: 1px solid var(--line-color);
+      background: var(--panel-color);
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    .report-link:hover,
+    .report-link:active {
+      text-decoration: underline;
+    }
+
+    .report-title {
+      display: block;
+      color: var(--text-color);
+      font-size: 1.125em;
+      line-height: 1.4;
+    }
+
+    .report-meta {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted-color);
+      font-size: 0.875em;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 3em;
+      padding-top: 1em;
+      border-top: 1px solid var(--line-color);
+      color: var(--muted-color);
+      font-size: 0.875em;
+    }
+
+    code {
+      padding: 0 2px;
+      background-color: var(--code-color);
+      font-family: Menlo, "Ubuntu Mono", Consolas, "Courier New", "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", serif;
+      font-size: 0.875em;
+      line-height: 1.714285em;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>YSM 分析报告</h1>
+    <p class="lead">Yes Steve Model reverse engineering report index.</p>
+    <p>请选择报告语言版本以阅读，源文档请在Github仓库中查看。</p>
+
+    <h2>Reports</h2>
+    <div class="reports" aria-label="Report links">
+      <a class="report-link" href="REPORT.html">
+        <span class="report-title">Yes Steve Model 分析</span>
+        <span class="report-meta">中文 HTML 报告</span>
+      </a>
+
+      <a class="report-link" href="REPORT_en.html">
+        <span class="report-title">Yes Steve Model Analysis</span>
+        <span class="report-meta">English HTML report</span>
+      </a>
+    </div>
+
+    <footer>
+      <span>Entry file: <code>index.html</code></span>
+    </footer>
+  </main>
+</body>
+</html>
