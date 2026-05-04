@@ -392,9 +392,7 @@ In this generation, information, actions, and file mappings are all stored in `Y
 
 ## Reverse Rendering
 
-<img src="assets/img8.png" align="right" width="200">
-
-In the third-generation format, there is a very puzzling problem: in the extracted third-generation models, the Blockbench project's `origin`, `size`, `pivot`, `rotation`, and every face's UV box are all missing. Only the raw vertex coordinates, normals, and necessary UVs remain.
+<img src="assets/img8.png" align="right" width="200">In the third-generation format, there is a very puzzling problem: in the extracted third-generation models, the Blockbench project's `origin`, `size`, `pivot`, `rotation`, and every face's UV box are all missing. Only the raw vertex coordinates, normals, and necessary UVs remain.
 
 This means that in the new YSM versions, the model has already been pre-rendered during export, converting the Blockbench project into pure geometry data. In other words, the encryption side completely erases the project-file layer's structural information. Even after all deserialization is complete, the exported model is only a tangled cluster of vertices and cannot be restored in Blockbench as an editable project. This became the final means of protecting the model.
 
@@ -420,9 +418,7 @@ By traversing the four adjacent edges of each face, we can determine which world
 
 > The left side shows an inclined face in 3D world space, and the right side shows its corresponding rectangle in texture space.
 
-<img src="assets/img10.png" align="right" width="200">
-
-After obtaining the rays of all faces, we can deduplicate them through simple similarity analysis and obtain three directions, which are the three local axes of the cube. However, for some reason, the YSM author downgraded all original `Double` precision values to `Float` (including all values in the Function framework). Therefore, all floating-point precision in the exported pre-rendered model is lost, and the extracted three directions are often not completely correct. If they are used directly for calculation, errors appear, and after several transforms the errors are amplified exponentially, causing the model to collapse.
+<img src="assets/img10.png" align="right" width="200">After obtaining the rays of all faces, we can deduplicate them through simple similarity analysis and obtain three directions, which are the three local axes of the cube. However, for some reason, the YSM author downgraded all original `Double` precision values to `Float` (including all values in the Function framework). Therefore, all floating-point precision in the exported pre-rendered model is lost, and the extracted three directions are often not completely correct. If they are used directly for calculation, errors appear, and after several transforms the errors are amplified exponentially, causing the model to collapse.
 
 The solution is to use [Gram-Schmidt orthogonalization](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process). Select the first direction as the reference, remove from the second direction the component parallel to the first, and the remainder is strictly perpendicular to it. The third direction is simpler: it is the cross product of the first two.
 

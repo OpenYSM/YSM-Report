@@ -392,9 +392,7 @@ LanguageFiles: [name + hash + nodeCount + key-value-pairs] × N
 
 ## 反渲染
 
-<img src="assets/img8.png" align="right" width="200">
-
-第三代格式中，有一个非常令人困惑的问题，第三代提取的模型中，Blockbench工程的origin、size、pivot、rotation，各面的UV框一个都没有，只有原始的顶点坐标、法线和必要的UV。
+<img src="assets/img8.png" align="right" width="200">第三代格式中，有一个非常令人困惑的问题，第三代提取的模型中，Blockbench工程的origin、size、pivot、rotation，各面的UV框一个都没有，只有原始的顶点坐标、法线和必要的UV。
 
 这代表了在新版本YSM中，导出阶段就已对模型进行了预渲染，将Blockbench工程预渲染成了纯几何数据。换句话说，加密侧完全擦除了工程文件层结构信息，使得即便完成所有反序列化，导出的模型也只是糊成一团的顶点，无法在Blockbench中还原为可编辑的工程，这也成为了保护模型的最终手段。
 
@@ -420,9 +418,7 @@ LanguageFiles: [name + hash + nodeCount + key-value-pairs] × N
 
 > 左边是3D世界空间中倾斜的一个面，右边是它在纹理上对应的矩形。
 
-<img src="assets/img10.png" align="right" width="200">
-
-得到所有面的射线之后，简单通过相似度分析去重之后，我们可以得到三个方向，这就是立方体的三个局部轴。然而YSM作者出于某种原因将所有原始的Double都精度降级为了Float（包括所有Function框架里的也改了），导出预渲染出来的模型中的所有浮点精度会丢失，提取出的三个方向往往不完全正确，直接拿它们来计算会有误差，经过几次Transform后误差会被指数级的放大导致模型直接崩坏。
+<img src="assets/img10.png" align="right" width="200">得到所有面的射线之后，简单通过相似度分析去重之后，我们可以得到三个方向，这就是立方体的三个局部轴。然而YSM作者出于某种原因将所有原始的Double都精度降级为了Float（包括所有Function框架里的也改了），导出预渲染出来的模型中的所有浮点精度会丢失，提取出的三个方向往往不完全正确，直接拿它们来计算会有误差，经过几次Transform后误差会被指数级的放大导致模型直接崩坏。
 
 解决办法是使用[Gram-Schmidt正交化](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process)。选取第一个方向作标准，把第二个方向里和它平行的成分去掉，剩下的就和它严格垂直了，第三个方向更简单，前两个叉乘一下就是。
 
